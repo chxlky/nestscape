@@ -18,22 +18,22 @@ export const providerEnum = pgEnum("provider", ["github", "google", "microsoft"]
 export const roleEnum = pgEnum("role", ["user", "host"]);
 
 export const userTable = pgTable("user", {
-    id: serial("id").primaryKey(),
-    email: text("email").notNull().unique(),
-    password: text("password"), // Nullable to support OAuth users
-    username: text("username").notNull(),
-    role: roleEnum("role"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).defaultNow().notNull()
+	id: serial("id").primaryKey(),
+	email: text("email").notNull().unique(),
+	password: text("password"), // Nullable to support OAuth users
+	username: text("username").notNull(),
+	role: roleEnum("role"),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).defaultNow().notNull()
 });
 
 export const userProvider = pgTable("user_provider", {
-    id: serial("id").primaryKey(),
-    userId: integer("user_id")
-        .notNull()
-        .references(() => userTable.id, { onDelete: "cascade" }),
-    provider: providerEnum("provider").notNull(),
-    providerId: text("provider_id").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).defaultNow().notNull()
+	id: serial("id").primaryKey(),
+	userId: integer("user_id")
+		.notNull()
+		.references(() => userTable.id, { onDelete: "cascade" }),
+	provider: providerEnum("provider").notNull(),
+	providerId: text("provider_id").notNull(),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).defaultNow().notNull()
 });
 
 export const sessionTable = pgTable("session", {

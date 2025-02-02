@@ -1,4 +1,9 @@
-import { deleteSessionTokenCookie, sessionCookieName, setSessionTokenCookie, validateSessionToken } from "$lib/server/session";
+import {
+	deleteSessionTokenCookie,
+	sessionCookieName,
+	setSessionTokenCookie,
+	validateSessionToken
+} from "$lib/server/session";
 import type { Handle } from "@sveltejs/kit";
 
 const handleAuth: Handle = async ({ event, resolve }) => {

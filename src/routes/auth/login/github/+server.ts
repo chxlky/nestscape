@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ cookies }) => {
 	return new Response(null, {
 		status: 302,
 		headers: {
-			Location: url.toString(),
+			Location: url.toString()
 		}
 	});
 };

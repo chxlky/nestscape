@@ -47,7 +47,9 @@
 
 					{#if form?.requiresConfirmation}
 						<div>
-							<label for="confirmPassword" class="block text-sm font-semibold text-gray-900">
+							<label
+								for="confirmPassword"
+								class="block text-sm font-semibold text-gray-900">
 								Confirm Password
 							</label>
 							<input
@@ -57,7 +59,6 @@
 							<input type="hidden" name="requiresConfirmation" value="true" />
 						</div>
 					{/if}
-
 				</div>
 
 				<button

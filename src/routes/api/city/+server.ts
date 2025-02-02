@@ -4,7 +4,7 @@ import { db } from "$lib/server/db";
 import { cityTable } from "$lib/server/db/schema";
 import { like } from "drizzle-orm";
 
-export const GET: RequestHandler = async ({url}) => {
+export const GET: RequestHandler = async ({ url }) => {
 	try {
 		const query = url.searchParams.get("q") || "";
 

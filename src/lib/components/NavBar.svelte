@@ -6,7 +6,7 @@
 
 	async function logout() {
 		const res = await fetch("/auth/logout", { method: "GET" });
-		
+
 		if (res.ok) {
 			await invalidateAll();
 			goto("/");
@@ -35,8 +35,14 @@
 					Homes
 				</a>
 				{#if user !== null}
-					<a href="/dashboard" class="rounded-md px-3 py-2 text-gray-700 hover:text-rose-500">Dashboard</a>
-					<button class="rounded-md px-3 py-2 text-gray-700 hover:text-rose-500" onclick={logout}>
+					<a
+						href="/dashboard"
+						class="rounded-md px-3 py-2 text-gray-700 hover:text-rose-500">
+						Dashboard
+					</a>
+					<button
+						class="rounded-md px-3 py-2 text-gray-700 hover:text-rose-500"
+						onclick={logout}>
 						Logout
 					</button>
 				{:else}
