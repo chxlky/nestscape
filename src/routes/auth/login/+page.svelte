@@ -8,7 +8,7 @@
 <div class="-mt-16 flex min-h-screen flex-col bg-gray-900 px-4">
 	<div class="absolute inset-0 -mt-16">
 		<img
-			src="https://images.unsplash.com/photo-1571896349842-33c89424de2d"
+			src="/pictures/auth background.jpg"
 			alt="Auth background"
 			class="h-full w-full opacity-40" />
 	</div>
@@ -104,25 +104,18 @@
 				</div>
 			</div>
 
-			<button
-				onclick={() => goto("/auth/login/github")}
-				class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-black px-4 py-2 font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
-				<img src="/icons/github.svg" alt="GitHub" class="size-5" />
-				GitHub
-			</button>
-
 			<div class="mt-2 flex gap-2">
+				<button
+					onclick={() => goto("/auth/login/github")}
+					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-black px-4 py-2 font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
+					<img src="/icons/github.svg" alt="GitHub" class="size-5" />
+					GitHub
+				</button>
 				<button
 					onclick={() => goto("/auth/login/google")}
 					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
 					<img src="/icons/google.svg" alt="Google" class="size-5" />
 					Google
-				</button>
-				<button
-					onclick={() => goto("/auth/login/microsoft")}
-					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
-					<img src="/icons/microsoft.svg" alt="Microsoft" class="size-5" />
-					Microsoft
 				</button>
 			</div>
 		</div>
