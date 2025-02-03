@@ -22,6 +22,8 @@ export const userTable = pgTable("user", {
 	email: text("email").notNull().unique(),
 	password: text("password"), // Nullable to support OAuth users
 	username: text("username").notNull(),
+	firstName: text("first_name"), // Nullable
+	lastName: text("last_name"), // Nullable
 	role: roleEnum("role"),
 	createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).defaultNow().notNull()
 });

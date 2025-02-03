@@ -11,31 +11,45 @@ export const actions = {
 		const data = await event.request.formData();
 		const email = data.get("email")?.toString() ?? "";
 		const password = data.get("password")?.toString() ?? "";
+		const firstName = data.get("firstName")?.toString() ?? "";
+		const lastName = data.get("lastName")?.toString() ?? "";
 		const confirmPassword = data.get("confirmPassword")?.toString();
-		const requiresConfirmation = data.get("requiresConfirmation") === "true";
+		const isRegistering = data.get("isRegistering") === "true";
 
 		if (email === "" || password === "") {
-			return fail(400, { message: "Please fill out all fields." });
+			return fail(400, { message: "Please fill in all fields." });
 		}
 
 		const user = await db.select().from(userTable).where(eq(userTable.email, email)).limit(1);
 		if (user.length === 0 || (user[0] && !user[0].password)) {
-			if (!requiresConfirmation) {
+			if (!isRegistering) {
 				return {
-					requiresConfirmation: true,
+					isRegistering: true,
 					email,
+					firstName,
+					lastName,
 					message:
 						user.length === 0
-							? "Please confirm your password to create account"
-							: "Please confirm your password to enable email login"
+							? "Please create an account."
+							: "Please set a password for email login."
 				};
 			}
 
 			if (!confirmPassword || password !== confirmPassword) {
 				return fail(400, {
-					requiresConfirmation: true,
+					isRegistering: true,
 					email,
-					message: "Passwords do not match"
+					firstName,
+					lastName,
+					message: "Passwords do not match."
+				});
+			}
+
+			if (isRegistering && (!firstName || !lastName)) {
+				return fail(400, {
+					isRegistering: true,
+					email,
+					message: "Please provide your name."
 				});
 			}
 
@@ -48,6 +62,8 @@ export const actions = {
 						email,
 						password: hashedPassword,
 						username: email.split("@")[0],
+						firstName,
+						lastName,
 						role: "user"
 					})
 					.returning();

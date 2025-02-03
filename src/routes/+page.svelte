@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { SearchIcon, Spinner } from "$lib/components/Icons.svelte";
 	import type { City } from "$lib/server/db/schema";
+	import { LoaderCircle, Search } from "lucide-svelte";
 
 	let search = $state("");
 	let isDropdownOpen = $state(false);
-	let cities = $state<City[]>([]);
-	let isLoading = $state(false);
+	let citiesPromise = $state<Promise<City[]> | null>(null);
 
 	function gotoExplore(city: string) {
 		goto(`/explore?city=${encodeURIComponent(city)}`);
@@ -27,19 +26,9 @@
 
 	$effect(() => {
 		if (search.length > 0) {
-			isLoading = true;
-			fetchCities(search)
-				.then((data) => {
-					cities = data;
-				})
-				.catch((error) => {
-					console.error(error);
-				})
-				.finally(() => {
-					isLoading = false;
-				});
+			citiesPromise = fetchCities(search);
 		} else {
-			cities = [];
+			citiesPromise = null;
 		}
 	});
 
@@ -119,29 +108,38 @@
 							}
 						}}
 						class="ml-2 flex items-center justify-center rounded-full bg-rose-500 px-6 py-2 text-white transition-colors hover:bg-rose-600">
-						{@render SearchIcon()}
+						<Search class="size-5" />
 					</button>
 
 					{#if isDropdownOpen && search.length > 0}
 						<div
 							class="absolute left-0 right-0 top-full z-10 mt-2 overflow-hidden rounded-xl bg-white shadow-lg">
-							{#if isLoading}
-								<div class="flex items-center justify-center px-6 py-3">
-									{@render Spinner()}
-								</div>
-							{:else if cities.length === 0}
-								<div class="px-6 py-3 text-gray-500">No cities found</div>
-							{:else}
-								{#each cities as city}
-									<button
-										class="w-full px-6 py-3 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
-										onmousedown={() => {
-											search = city.name;
-											gotoExplore(city.name);
-										}}>
-										{city.name}, {city.countryId}
-									</button>
-								{/each}
+							{#if citiesPromise}
+								{#await citiesPromise}
+									<div class="flex items-center justify-center px-6 py-3">
+										<LoaderCircle class="size-6 animate-spin" />
+									</div>
+								{:then cities}
+									{#if cities.length === 0}
+										<div class="px-6 py-3 text-gray-500">No cities found</div>
+									{:else}
+										{#each cities as city}
+											<button
+												class="w-full px-6 py-3 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+												onmousedown={() => {
+													search = city.name;
+													gotoExplore(city.name);
+												}}>
+												{city.name}, {city.countryId}
+											</button>
+										{/each}
+									{/if}
+								{:catch error}
+									<div class="px-6 py-3 text-center text-red-500">
+										<p>Failed to fetch cities</p>
+										<p>Error: {error}</p>
+									</div>
+								{/await}
 							{/if}
 						</div>
 					{/if}

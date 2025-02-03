@@ -6,5 +6,5 @@
 </script>
 
 <div>
-	Welcome {user?.username}
+	Welcome {user?.firstName}
 </div>

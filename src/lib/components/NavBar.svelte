@@ -5,7 +5,7 @@
 	let open = $state(false);
 
 	async function logout() {
-		const res = await fetch("/auth/logout", { method: "GET" });
+		const res = await fetch("/auth/logout", { method: "POST" });
 
 		if (res.ok) {
 			await invalidateAll();

@@ -47,6 +47,8 @@ export async function validateSessionToken(token: string): Promise<{
 				email: table.userTable.email,
 				username: table.userTable.username,
 				password: table.userTable.password, // Can be null for OAuth users
+				firstName: table.userTable.firstName,
+				lastName: table.userTable.lastName,
 				role: table.userTable.role,
 				createdAt: table.userTable.createdAt
 			},

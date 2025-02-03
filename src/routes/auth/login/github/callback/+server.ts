@@ -5,6 +5,7 @@ import { db } from "$lib/server/db";
 import { createSession, generateSessionToken, setSessionTokenCookie } from "$lib/server/session";
 import { userProvider, userTable } from "$lib/server/db/schema";
 import { and, eq } from "drizzle-orm";
+import { redirect } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async (event) => {
 	const storedState = event.cookies.get("github_oauth_state") ?? null;
@@ -60,12 +61,7 @@ export const GET: RequestHandler = async (event) => {
 		const session = await createSession(sessionToken, user!.id);
 		setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-		return new Response(null, {
-			status: 302,
-			headers: {
-				Location: "/"
-			}
-		});
+		throw redirect(302, "/dashboard");
 	} else {
 		// Linked user does not exist - handle registration and create session
 		const githubEmailResponse = await fetch("https://api.github.com/user/emails", {
@@ -100,19 +96,19 @@ export const GET: RequestHandler = async (event) => {
 			const session = await createSession(sessionToken, user.id);
 			setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-			return new Response(null, {
-				status: 302,
-				headers: {
-					Location: "/dashboard"
-				}
-			});
+			throw redirect(302, "/dashboard");
 		} else {
 			// Create a new user and link provider
+			const [firstName, ...lastNameParts] = (githubUser.name ?? githubUser.login).split(" ");
+			const lastName = lastNameParts.join(" ");
+
 			const [newUser] = await db
 				.insert(userTable)
 				.values({
 					email: primary.email,
 					username: githubUser.login,
+					firstName: firstName || null,
+					lastName: lastName || null,
 					role: "user"
 				})
 				.returning();
@@ -127,12 +123,7 @@ export const GET: RequestHandler = async (event) => {
 			const session = await createSession(sessionToken, newUser.id);
 			setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-			return new Response(null, {
-				status: 302,
-				headers: {
-					Location: "/dashboard"
-				}
-			});
+			throw redirect(302, "/dashboard");
 		}
 	}
 };

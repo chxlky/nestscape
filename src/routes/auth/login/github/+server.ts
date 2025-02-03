@@ -1,6 +1,7 @@
 import { generateState } from "arctic";
 import type { RequestHandler } from "./$types";
 import { github } from "$lib/server/auth";
+import { redirect } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ cookies }) => {
 	const state = generateState();
@@ -14,10 +15,5 @@ export const GET: RequestHandler = async ({ cookies }) => {
 		sameSite: "lax"
 	});
 
-	return new Response(null, {
-		status: 302,
-		headers: {
-			Location: url.toString()
-		}
-	});
+	throw redirect(302, url.toString());
 };

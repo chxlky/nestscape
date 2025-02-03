@@ -15,7 +15,9 @@
 
 	<div class="flex min-h-screen flex-1 items-center justify-center px-4 backdrop-blur-sm">
 		<div class="w-full max-w-md rounded-2xl bg-slate-50 p-8">
-			<h2 class="mb-6 text-center text-3xl font-bold text-gray-900">Login</h2>
+			<h2 class="mb-6 text-center text-3xl font-bold text-gray-900">
+				{form?.isRegistering ? "Register" : "Login"}
+			</h2>
 
 			{#if form?.message}
 				<div class="mb-2 rounded border border-red-500 bg-red-100 p-2 text-center">
@@ -25,6 +27,31 @@
 
 			<form method="POST" class="space-y-4">
 				<div class="space-y-4">
+					{#if form?.isRegistering}
+						<div>
+							<label
+								for="firstName"
+								class="block text-sm font-semibold text-gray-900">
+								First Name
+							</label>
+							<input
+								name="firstName"
+								type="text"
+								value={form?.firstName ?? ""}
+								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+						</div>
+						<div>
+							<label for="lastName" class="block text-sm font-semibold text-gray-900">
+								Last Name
+							</label>
+							<input
+								name="lastName"
+								type="text"
+								value={form?.lastName ?? ""}
+								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+						</div>
+					{/if}
+
 					<div>
 						<label for="email" class="block text-sm font-semibold text-gray-900">
 							Email
@@ -45,7 +72,7 @@
 							class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
 					</div>
 
-					{#if form?.requiresConfirmation}
+					{#if form?.isRegistering}
 						<div>
 							<label
 								for="confirmPassword"
@@ -56,7 +83,7 @@
 								name="confirmPassword"
 								type="password"
 								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
-							<input type="hidden" name="requiresConfirmation" value="true" />
+							<input type="hidden" name="isRegistering" value="true" />
 						</div>
 					{/if}
 				</div>
@@ -64,7 +91,7 @@
 				<button
 					type="submit"
 					class="w-full rounded-lg bg-rose-500 px-4 py-2 text-lg font-semibold text-white transition hover:bg-rose-600">
-					{form?.requiresConfirmation ? "Confirm Password" : "Login"}
+					{form?.isRegistering ? "Create Account" : "Login"}
 				</button>
 			</form>
 
