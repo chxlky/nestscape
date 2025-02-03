@@ -53,15 +53,15 @@
 	const destinations = [
 		{
 			city: "Paris",
-			image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+			image: "/pictures/paris.jpg"
 		},
 		{
 			city: "Tokyo",
-			image: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8"
+			image: "/pictures/tokyo.jpg"
 		},
 		{
 			city: "New York",
-			image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9"
+			image: "/pictures/new york.jpg"
 		}
 	];
 
@@ -77,7 +77,7 @@
 	<div class="relative h-[600px] bg-gray-900">
 		<div class="absolute inset-0">
 			<img
-				src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+				src="/pictures/landing background.jpg"
 				alt="Hero background"
 				class="size-full object-cover opacity-40" />
 		</div>
