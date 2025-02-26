@@ -113,7 +113,7 @@
 
 					{#if isDropdownOpen && search.length > 0}
 						<div
-							class="absolute left-0 right-0 top-full z-10 mt-2 overflow-hidden rounded-xl bg-white shadow-lg">
+							class="absolute top-full right-0 left-0 z-10 mt-2 overflow-hidden rounded-xl bg-white shadow-lg">
 							{#if citiesPromise}
 								{#await citiesPromise}
 									<div class="flex items-center justify-center px-6 py-3">

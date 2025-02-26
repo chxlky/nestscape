@@ -4,7 +4,7 @@
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 			<!-- Company section -->
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-gray-700">About</h3>
+				<h3 class="text-sm font-semibold tracking-wider text-gray-700 uppercase">About</h3>
 				<ul class="mt-4 space-y-4">
 					<li>
 						<a href="/about" class="text-gray-600 hover:text-rose-500">About Us</a>
@@ -23,7 +23,7 @@
 
 			<!-- Support section -->
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-gray-700">
+				<h3 class="text-sm font-semibold tracking-wider text-gray-700 uppercase">
 					Support
 				</h3>
 				<ul class="mt-4 space-y-4">
@@ -50,7 +50,7 @@
 
 			<!-- Host section -->
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-gray-700">
+				<h3 class="text-sm font-semibold tracking-wider text-gray-700 uppercase">
 					Hosting
 				</h3>
 				<ul class="mt-4 space-y-4">
@@ -77,7 +77,7 @@
 
 			<!-- Social section -->
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-gray-700">
+				<h3 class="text-sm font-semibold tracking-wider text-gray-700 uppercase">
 					Connect
 				</h3>
 				<ul class="mt-4 space-y-4">
