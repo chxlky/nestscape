@@ -91,7 +91,7 @@
 					<input
 						type="text"
 						placeholder="Where are you going?"
-						class="w-full rounded-full px-6 py-2 focus:outline-none"
+						class="w-full rounded-full px-6 py-2 focus:outline-hidden"
 						bind:value={search}
 						onfocus={() => (isDropdownOpen = true)}
 						onblur={() => (isDropdownOpen = false)}
@@ -125,7 +125,7 @@
 									{:else}
 										{#each cities as city}
 											<button
-												class="w-full px-6 py-3 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+												class="w-full px-6 py-3 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden"
 												onmousedown={() => {
 													search = city.name;
 													gotoExplore(city.name);
@@ -177,7 +177,7 @@
 							src={destination.image}
 							alt={destination.city}
 							class="h-full w-full object-cover transition-transform group-hover:scale-110" />
-						<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+						<div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent">
 							<div class="absolute bottom-6 left-6">
 								<h3 class="text-xl font-bold text-white">{destination.city}</h3>
 							</div>

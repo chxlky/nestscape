@@ -20,7 +20,7 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
 			<!-- Logo -->
-			<div class="flex-shrink-0">
+			<div class="shrink-0">
 				<a href="/" class="flex items-center">
 					<span class="text-2xl font-bold text-rose-500">nestscape</span>
 				</a>

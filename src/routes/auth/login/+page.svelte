@@ -13,14 +13,14 @@
 			class="h-full w-full opacity-40" />
 	</div>
 
-	<div class="flex min-h-screen flex-1 items-center justify-center px-4 backdrop-blur-sm">
+	<div class="flex min-h-screen flex-1 items-center justify-center px-4 backdrop-blur-xs">
 		<div class="w-full max-w-md rounded-2xl bg-slate-50 p-8">
 			<h2 class="mb-6 text-center text-3xl font-bold text-gray-900">
 				{form?.isRegistering ? "Register" : "Login"}
 			</h2>
 
 			{#if form?.message}
-				<div class="mb-2 rounded border border-red-500 bg-red-100 p-2 text-center">
+				<div class="mb-2 rounded-sm border border-red-500 bg-red-100 p-2 text-center">
 					<p class="text-red-500">Error: {form?.message}</p>
 				</div>
 			{/if}
@@ -38,7 +38,7 @@
 								name="firstName"
 								type="text"
 								value={form?.firstName ?? ""}
-								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-hidden" />
 						</div>
 						<div>
 							<label for="lastName" class="block text-sm font-semibold text-gray-900">
@@ -48,7 +48,7 @@
 								name="lastName"
 								type="text"
 								value={form?.lastName ?? ""}
-								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-hidden" />
 						</div>
 					{/if}
 
@@ -60,7 +60,7 @@
 							name="email"
 							type="email"
 							value={form?.email ?? ""}
-							class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+							class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-hidden" />
 					</div>
 					<div>
 						<label for="password" class="block text-sm font-semibold text-gray-900">
@@ -69,7 +69,7 @@
 						<input
 							name="password"
 							type="password"
-							class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+							class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-hidden" />
 					</div>
 
 					{#if form?.isRegistering}
@@ -82,7 +82,7 @@
 							<input
 								name="confirmPassword"
 								type="password"
-								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-none" />
+								class="w-full rounded-xl bg-gray-100 px-4 py-3 focus:outline-hidden" />
 							<input type="hidden" name="isRegistering" value="true" />
 						</div>
 					{/if}
@@ -107,13 +107,13 @@
 			<div class="mt-2 flex gap-2">
 				<button
 					onclick={() => goto("/auth/login/github")}
-					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-black px-4 py-2 font-medium text-white shadow-sm hover:bg-gray-800 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 focus:outline-none">
+					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-black px-4 py-2 font-medium text-white shadow-xs hover:bg-gray-800 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 focus:outline-hidden">
 					<img src="/icons/github.svg" alt="GitHub" class="size-5" />
 					GitHub
 				</button>
 				<button
 					onclick={() => goto("/auth/login/google")}
-					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 focus:outline-none">
+					class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium shadow-xs hover:bg-gray-50 focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 focus:outline-hidden">
 					<img src="/icons/google.svg" alt="Google" class="size-5" />
 					Google
 				</button>
